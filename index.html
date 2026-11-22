@@ -112,15 +112,10 @@ a.val:hover{opacity:.75;text-decoration-color:#FAFAFA}
 .copy:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
 
 /* footer */
-footer{border-top:1px solid var(--line);padding:56px 0 40px}
-.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:36px;border-bottom:1px solid var(--line)}
-.foot-top img{height:32px;width:auto}
-.foot-list{display:flex;flex-direction:column;gap:14px;min-width:min(100%,360px)}
-.foot-item{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.foot-item .val{font-size:16px}
-.foot-item .copy{padding:6px 12px;font-size:12px}
-.foot-bottom{padding-top:28px}
-.foot-bottom p{color:var(--muted);font-size:13.5px}
+footer{border-top:1px solid var(--line);padding:44px 0}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot img{height:36px;width:auto;object-fit:contain}
+.foot p{color:var(--muted);font-size:13.5px}
 
 /* toast */
 .toast{position:fixed;left:50%;bottom:36px;transform:translate(-50%,24px);background:var(--white);color:var(--bg);padding:13px 24px;border-radius:4px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:all .4s var(--ease);z-index:300}
@@ -177,11 +172,14 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
   .m-top{padding:12px 16px}
   .thumbs{padding:10px 16px}
   .thumbs button{width:72px}
-  .foot-top{flex-direction:column}
+  .foot{flex-direction:column;align-items:flex-start;gap:16px}
 }
 @media(max-width:480px){
   nav a:first-child{display:none}
   .btn{width:100%}
+  .contact .row{gap:10px}
+  .contact .val{font-size:clamp(11px,3.5vw,14px);overflow-wrap:normal;white-space:nowrap}
+  .contact .copy{padding:8px 10px;font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -261,13 +259,11 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
             <button class="copy" type="button" data-copy="+7 (911) 854 23 59">Скопировать</button>
           </div>
           <div class="row">
-            <div><div class="lbl">Почта (Яндекс)</div><a class="val" href="mailto:danbazhok@yandex.ru">danbazhok@yandex.ru</a>
-</div>
+            <div><div class="lbl">Почта (Яндекс)</div><a class="val" href="/cdn-cgi/l/email-protection#6c080d020e0d160403072c150d02080914421e19"><span class="__cf_email__" data-cfemail="1b7f7a75797a617374705b627a757f7e6335696e">[email&#160;protected]</span></a></div>
             <button class="copy" type="button" data-copy="danbazhok@yandex.ru">Скопировать</button>
           </div>
           <div class="row">
-            <div><div class="lbl">Почта (Gmail)</div><a class="val" href="mailto:danikbazok@gmail.com">danikbazok@gmail.com</a>
-</div>
+            <div><div class="lbl">Почта (Gmail)</div><a class="val" href="/cdn-cgi/l/email-protection#b4d0d5dadddfd6d5cedbdff4d3d9d5ddd89ad7dbd9"><span class="__cf_email__" data-cfemail="6206030c0b090003180d0922050f030b0e4c010d0f">[email&#160;protected]</span></a></div>
             <button class="copy" type="button" data-copy="danikbazok@gmail.com">Скопировать</button>
           </div>
           <div class="row">
@@ -280,27 +276,9 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px}
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <img src="logo%20white.png" alt="Логотип" loading="lazy">
-      <div class="foot-list">
-        <div class="foot-item">
-          <a class="val" href="tel:+79118542359">+7 (911) 854 23 59</a>
-          <button class="copy" type="button" data-copy="+7 (911) 854 23 59">Скопировать</button>
-        </div>
-        <div class="foot-item">
-          <a class="val" href="/cdn-cgi/l/email-protection#482c29262a2932202723083129262c2d30663a3d"><span class="__cf_email__" data-cfemail="b9ddd8d7dbd8c3d1d6d2f9c0d8d7dddcc197cbcc">[email&#160;protected]</span></a>
-          <button class="copy" type="button" data-copy="danbazhok@yandex.ru">Скопировать</button>
-        </div>
-        <div class="foot-item">
-          <a class="val" href="/cdn-cgi/l/email-protection#6105000f080a03001b0e0a21060c00080d4f020e0c"><span class="__cf_email__" data-cfemail="4420252a2d2f26253e2b2f042329252d286a272b29">[email&#160;protected]</span></a>
-          <button class="copy" type="button" data-copy="danikbazok@gmail.com">Скопировать</button>
-        </div>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <p>© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR</p>
-    </div>
+  <div class="wrap foot">
+    <img src="logo%20white.png" alt="Логотип" loading="lazy">
+    <p>© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR</p>
   </div>
 </footer>
 

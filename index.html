@@ -103,16 +103,24 @@ h2{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.02em;line-h
 .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
 .row:first-child{padding-top:0}
 .row:last-child{border-bottom:none;padding-bottom:0}
-.row .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.row a.val,.row .val{font-size:clamp(16px,1.8vw,21px);font-weight:600;word-break:break-all;transition:color .3s}
-.row a.val:hover{color:var(--muted)}
+.row > div{min-width:0}
+.lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.val{display:inline-block;color:#FAFAFA;font-size:clamp(16px,1.8vw,21px);font-weight:600;overflow-wrap:anywhere;transition:opacity .3s}
+a.val{text-decoration:underline;text-decoration-color:rgba(250,250,250,.35);text-underline-offset:4px}
+a.val:hover{opacity:.75;text-decoration-color:#FAFAFA}
 .copy{flex:none;padding:9px 16px;border:1px solid var(--line-hi);border-radius:4px;font-size:13px;color:var(--text);transition:all .3s}
 .copy:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
 
-footer{border-top:1px solid var(--line);padding:44px 0}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.foot img{height:32px;width:auto}
-.foot p{color:var(--muted);font-size:13.5px}
+/* footer */
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:36px;border-bottom:1px solid var(--line)}
+.foot-top img{height:32px;width:auto}
+.foot-list{display:flex;flex-direction:column;gap:14px;min-width:min(100%,360px)}
+.foot-item{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.foot-item .val{font-size:16px}
+.foot-item .copy{padding:6px 12px;font-size:12px}
+.foot-bottom{padding-top:28px}
+.foot-bottom p{color:var(--muted);font-size:13.5px}
 
 /* toast */
 .toast{position:fixed;left:50%;bottom:36px;transform:translate(-50%,24px);background:var(--white);color:var(--bg);padding:13px 24px;border-radius:4px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:all .4s var(--ease);z-index:300}
@@ -169,12 +177,11 @@ footer{border-top:1px solid var(--line);padding:44px 0}
   .m-top{padding:12px 16px}
   .thumbs{padding:10px 16px}
   .thumbs button{width:72px}
-  .foot{flex-direction:column;align-items:flex-start}
+  .foot-top{flex-direction:column}
 }
 @media(max-width:480px){
   nav a:first-child{display:none}
   .btn{width:100%}
-  .row{flex-direction:column;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
@@ -250,16 +257,16 @@ footer{border-top:1px solid var(--line);padding:44px 0}
         </div>
         <div class="rows">
           <div class="row">
-            <div><div class="lbl">Телефон</div><a class="val" href="tel:+79118542359">+7 911 854 23 59</a></div>
-            <button class="copy" data-copy="+79118542359">Скопировать</button>
+            <div><div class="lbl">Телефон</div><a class="val" href="tel:+79118542359">+7 (911) 854 23 59</a></div>
+            <button class="copy" type="button" data-copy="+7 (911) 854 23 59">Скопировать</button>
           </div>
           <div class="row">
-            <div><div class="lbl">Почта (Яндекс)</div><a class="val" href="/cdn-cgi/l/email-protection#4d292c232f2c372522260d342c23292835633f38"><span class="__cf_email__" data-cfemail="5f3b3e313d3e253730341f263e313b3a27712d2a">[email&#160;protected]</span></a></div>
-            <button class="copy" data-copy="danbazhok@yandex.ru">Скопировать</button>
+            <div><div class="lbl">Почта (Яндекс)</div><a class="val" href="/cdn-cgi/l/email-protection#7511141b17140f1d1a1e350c141b11100d5b0700"><span class="__cf_email__" data-cfemail="88ece9e6eae9f2e0e7e3c8f1e9e6ecedf0a6fafd">[email&#160;protected]</span></a></div>
+            <button class="copy" type="button" data-copy="danbazhok@yandex.ru">Скопировать</button>
           </div>
           <div class="row">
-            <div><div class="lbl">Почта (Gmail)</div><a class="val" href="/cdn-cgi/l/email-protection#7d191c1314161f1c0712163d1a101c1411531e1210"><span class="__cf_email__" data-cfemail="a7c3c6c9ceccc5c6ddc8cce7c0cac6cecb89c4c8ca">[email&#160;protected]</span></a></div>
-            <button class="copy" data-copy="danikbazok@gmail.com">Скопировать</button>
+            <div><div class="lbl">Почта (Gmail)</div><a class="val" href="/cdn-cgi/l/email-protection#e387828d8a888182998c88a3848e828a8fcd808c8e"><span class="__cf_email__" data-cfemail="0266636c6b696063786d6942656f636b6e2c616d6f">[email&#160;protected]</span></a></div>
+            <button class="copy" type="button" data-copy="danikbazok@gmail.com">Скопировать</button>
           </div>
           <div class="row">
             <div><div class="lbl">Локация</div><span class="val">Калининград</span></div>
@@ -271,9 +278,27 @@ footer{border-top:1px solid var(--line);padding:44px 0}
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <img src="logo%20white.png" alt="Логотип">
-    <p>© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR</p>
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="logo%20white.png" alt="Логотип" loading="lazy">
+      <div class="foot-list">
+        <div class="foot-item">
+          <a class="val" href="tel:+79118542359">+7 (911) 854 23 59</a>
+          <button class="copy" type="button" data-copy="+7 (911) 854 23 59">Скопировать</button>
+        </div>
+        <div class="foot-item">
+          <a class="val" href="/cdn-cgi/l/email-protection#482c29262a2932202723083129262c2d30663a3d"><span class="__cf_email__" data-cfemail="b9ddd8d7dbd8c3d1d6d2f9c0d8d7dddcc197cbcc">[email&#160;protected]</span></a>
+          <button class="copy" type="button" data-copy="danbazhok@yandex.ru">Скопировать</button>
+        </div>
+        <div class="foot-item">
+          <a class="val" href="/cdn-cgi/l/email-protection#6105000f080a03001b0e0a21060c00080d4f020e0c"><span class="__cf_email__" data-cfemail="4420252a2d2f26253e2b2f042329252d286a272b29">[email&#160;protected]</span></a>
+          <button class="copy" type="button" data-copy="danikbazok@gmail.com">Скопировать</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR</p>
+    </div>
   </div>
 </footer>
 
@@ -368,7 +393,7 @@ CASES.forEach((c, i) => {
   const el = document.createElement('article');
   el.className = 'case reveal';
   el.innerHTML = `
-    <div class="media" data-i="${i}"><img src="${src(c.cover)}" alt="${c.title}" loading="lazy"></div>
+    <div class="media" data-i="${i}"><img src="${src(c.cover)}" alt="${c.title}" loading="lazy" decoding="async"></div>
     <div class="case-body">
       <div class="kicker">${c.tag}</div>
       <h3>${c.title}</h3>
@@ -407,7 +432,7 @@ function renderWorks(){
     el.className = 'work';
     el.style.animationDelay = (i * 40) + 'ms';
     el.dataset.i = i;
-    el.innerHTML = `<div class="media"><img src="${src(w.file)}" alt="${w.title}" loading="lazy"></div><p><small>${w.catName}</small>${w.title}</p>`;
+    el.innerHTML = `<div class="media"><img src="${src(w.file)}" alt="${w.title}" loading="lazy" decoding="async"></div><p><small>${w.catName}</small>${w.title}</p>`;
     worksEl.appendChild(el);
   });
 }
@@ -429,7 +454,7 @@ function hideModal(m){
   document.body.classList.remove('locked'); active = null;
 }
 
-/* slider */
+/* slider: картинки слайдов и миниатюр создаются только при открытии модалки */
 const sl = document.getElementById('sl'), slImg = document.getElementById('sl-img'),
       slCount = document.getElementById('sl-count'), slTitle = document.getElementById('sl-title'),
       slThumbs = document.getElementById('sl-thumbs'), slStage = document.getElementById('sl-stage');
@@ -442,7 +467,7 @@ function openSlider(ci){
   slides.forEach((f, i) => {
     const b = document.createElement('button');
     b.setAttribute('aria-label', 'Слайд ' + (i+1));
-    b.innerHTML = `<img src="${src(f)}" alt="" loading="lazy">`;
+    b.innerHTML = `<img src="${src(f)}" alt="" loading="lazy" decoding="async">`;
     b.onclick = () => goSlide(i);
     slThumbs.appendChild(b);
   });
@@ -451,19 +476,12 @@ function openSlider(ci){
 }
 function goSlide(i){
   si = (i + slides.length) % slides.length;
-  slImg.classList.add('fade');
-  const next = new Image();
-  const done = () => {
-    slImg.src = next.src; slImg.alt = `${slCase.title}, слайд ${si+1}`;
-    slImg.classList.remove('fade');
-  };
-  next.onload = done; next.onerror = done;
-  next.src = src(slides[si]);
+  slImg.src = src(slides[si]);
+  slImg.alt = `${slCase.title}, слайд ${si+1}`;
   slCount.textContent = `${si+1} / ${slides.length}`;
   [...slThumbs.children].forEach((b, k) => b.classList.toggle('on', k === si));
   const t = slThumbs.children[si];
   if (t) slThumbs.scrollTo({left: t.offsetLeft - slThumbs.clientWidth/2 + t.clientWidth/2, behavior:'smooth'});
-  [1,-1].forEach(d => { new Image().src = src(slides[(si + d + slides.length) % slides.length]); });
 }
 document.getElementById('sl-prev').onclick = () => goSlide(si-1);
 document.getElementById('sl-next').onclick = () => goSlide(si+1);
@@ -497,13 +515,10 @@ function goLb(i){
   li = (i + lbList.length) % lbList.length;
   const w = lbList[li];
   setZoom(false);
-  lbImg.style.opacity = 0;
-  const n = new Image();
-  const done = () => { lbImg.src = n.src; lbImg.alt = w.title; lbImg.style.opacity = 1; };
-  n.onload = done; n.onerror = done; n.src = src(w.file);
+  lbImg.src = src(w.file);
+  lbImg.alt = w.title;
   lbTitle.innerHTML = `${w.title}<small>${w.catName}</small>`;
   lbCount.textContent = `${li+1} / ${lbList.length}`;
-  [1,-1].forEach(d => { new Image().src = src(lbList[(li + d + lbList.length) % lbList.length].file); });
 }
 function setZoom(on, ev){
   const was = lbScroll.classList.contains('zoom');

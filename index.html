@@ -115,6 +115,7 @@ a.val{text-decoration:underline;text-decoration-color:rgba(250,250,250,.35);text
 a.val:hover{opacity:.75;text-decoration-color:#FAFAFA}
 .copy{flex:none;padding:9px 16px;border:1px solid var(--line-hi);border-radius:4px;font-size:13px;color:var(--text);transition:all .3s}
 .copy:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
+a.copy{display:inline-block;line-height:normal;text-align:center;white-space:nowrap}
 
 /* footer */
 footer{border-top:1px solid var(--line);padding:44px 0}
@@ -283,6 +284,9 @@ footer{border-top:1px solid var(--line);padding:44px 0}
             <button class="copy" type="button" data-u="danikbazok" data-d="gmail.com" data-i18n="copy">Скопировать</button>
           </div>
           <div class="row">
+            <div><div class="lbl" data-i18n="lblTg">Мессенджер</div><a class="val" href="https://t.me/Pancake005" target="_blank" rel="noopener noreferrer" data-i18n="tgVal">Написать в Telegram</a></div>
+            <a class="copy" href="https://t.me/Pancake005" target="_blank" rel="noopener noreferrer" data-i18n="tgBtn">Открыть ↗</a>
+          </div>
           <div class="row">
             <div><div class="lbl" data-i18n="lblLoc">Локация</div><span class="val" data-i18n="locVal">Калининград/Рига</span></div>
           </div>
@@ -363,6 +367,7 @@ const T = {
     s3num:'03 / Контакты', s3h:'Давайте обсудим задачу',
     s3p:'Пишите или звоните. Отвечаю быстро, особенно если в письме есть бриф.',
     lblPhone:'Телефон', lblYandex:'Почта (Яндекс)', lblGmail:'Почта (Gmail)', lblLoc:'Локация', locVal:'Калининград/Рига',
+    lblTg:'Мессенджер', tgVal:'Написать в Telegram', tgBtn:'Открыть ↗',
     copy:'Скопировать', copied:'Скопировано!',
     close:'Закрыть', prev:'Назад', next:'Вперёд',
     copyright:'© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR'
@@ -391,6 +396,7 @@ const T = {
     s3num:'03 / Kontakti', s3h:'Pārrunāsim uzdevumu',
     s3p:'Rakstiet vai zvaniet. Atbildu ātri, īpaši ja vēstulē ir īss brīfs.',
     lblPhone:'Tālrunis', lblYandex:'E-pasts (Yandex)', lblGmail:'E-pasts (Gmail)', lblLoc:'Atrašanās vieta', locVal:'Kaļiņingrada/Rīga',
+    lblTg:'Ziņapmaiņa', tgVal:'Rakstīt Telegram', tgBtn:'Atvērt ↗',
     copy:'Kopēt', copied:'Nokopēts!',
     close:'Aizvērt', prev:'Atpakaļ', next:'Uz priekšu',
     copyright:'© 2026 Daniils Bažoks. Reklāmas un PR speciālista portfolio'
@@ -419,6 +425,7 @@ const T = {
     s3num:'03 / Contact', s3h:"Let's discuss your task",
     s3p:'Write or call. I reply fast, especially when the email comes with a brief.',
     lblPhone:'Phone', lblYandex:'Email (Yandex)', lblGmail:'Email (Gmail)', lblLoc:'Location', locVal:'Kaliningrad/Riga',
+    lblTg:'Messenger', tgVal:'Message on Telegram', tgBtn:'Open ↗',
     copy:'Copy', copied:'Copied!',
     close:'Close', prev:'Back', next:'Next',
     copyright:'© 2026 Daniil Bazhok. Advertising and PR specialist portfolio'
@@ -720,7 +727,7 @@ function flash(msg){
   toast.textContent = msg; toast.classList.add('show');
   clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 1800);
 }
-document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', async () => {
+document.querySelectorAll('button.copy').forEach(b => b.addEventListener('click', async () => {
   const v = b.dataset.copy || mail(b.dataset.u, b.dataset.d);
   try { await navigator.clipboard.writeText(v); }
   catch {

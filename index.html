@@ -26,13 +26,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* header */
 header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(9,9,11,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(39,39,42,.7)}
-.head{display:flex;align-items:center;justify-content:space-between;height:68px}
+.head{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
 .head img{height:36px;width:auto}
-nav{display:flex;gap:36px}
-nav a{font-size:14px;color:var(--muted);letter-spacing:.02em;transition:color .3s;position:relative}
+.head-right{display:flex;align-items:center;gap:32px}
+nav{display:flex;gap:32px}
+nav a{font-size:14px;color:var(--muted);letter-spacing:.02em;transition:color .3s;position:relative;white-space:nowrap}
 nav a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--white);transition:width .35s var(--ease)}
 nav a:hover{color:var(--text)}
 nav a:hover::after{width:100%}
+.lang{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px;background:rgba(18,18,21,.6)}
+.lang button{padding:5px 11px;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted);border-radius:999px;transition:all .3s}
+.lang button:hover{color:var(--text)}
+.lang button.on{background:var(--white);color:var(--bg)}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -134,7 +139,6 @@ footer{border-top:1px solid var(--line);padding:44px 0}
 .x:hover{background:var(--white);color:var(--bg)}
 .stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:20px 90px}
 .stage img.cur{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;transition:opacity .25s}
-.stage img.cur.fade{opacity:0}
 .arrow{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border:1px solid var(--line-hi);border-radius:50%;background:rgba(18,18,21,.85);font-size:24px;z-index:3;transition:all .3s}
 .arrow:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
 .arrow.prev{left:20px}.arrow.next{right:20px}
@@ -150,7 +154,7 @@ footer{border-top:1px solid var(--line);padding:44px 0}
 #lb .scroller img{margin:auto;max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in;user-select:none;-webkit-user-drag:none;transition:opacity .25s}
 #lb .scroller.zoom img{max-width:none;max-height:none;width:230%;cursor:zoom-out}
 #lb .scroller.zoom{cursor:grab}
-#lb .hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:12.5px;color:var(--muted);background:rgba(18,18,21,.85);border:1px solid var(--line);padding:6px 14px;border-radius:999px;pointer-events:none;z-index:2}
+#lb .hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:12.5px;color:var(--muted);background:rgba(18,18,21,.85);border:1px solid var(--line);padding:6px 14px;border-radius:999px;pointer-events:none;z-index:2;white-space:nowrap}
 
 @media(max-width:960px){
   .works{grid-template-columns:repeat(2,1fr)}
@@ -158,7 +162,8 @@ footer{border-top:1px solid var(--line);padding:44px 0}
 }
 @media(max-width:720px){
   .wrap{padding:0 20px}
-  nav{gap:18px}
+  .head-right{gap:16px}
+  nav{gap:16px}
   nav a{font-size:13px}
   section{padding:76px 0}
   .cases{grid-template-columns:1fr}
@@ -175,7 +180,11 @@ footer{border-top:1px solid var(--line);padding:44px 0}
   .foot{flex-direction:column;align-items:flex-start;gap:16px}
 }
 @media(max-width:480px){
+  .head img{height:32px}
+  .head-right{gap:10px}
+  nav{gap:12px}
   nav a:first-child{display:none}
+  .lang button{padding:5px 8px;font-size:11px}
   .btn{width:100%}
   .contact .row{gap:10px}
   .contact .val{font-size:clamp(11px,3.5vw,14px);overflow-wrap:normal;white-space:nowrap}
@@ -191,33 +200,40 @@ footer{border-top:1px solid var(--line);padding:44px 0}
 
 <header>
   <div class="wrap head">
-    <a href="#top" aria-label="Наверх"><img src="logo%20white.png" alt="Логотип"></a>
-    <nav>
-      <a href="#strategies">Стратегии</a>
-      <a href="#practice">Практика</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
+    <a href="#top" data-i18n-aria="toTop"><img src="logo%20white.png" alt="" data-i18n-alt="logo"></a>
+    <div class="head-right">
+      <nav>
+        <a href="#strategies" data-i18n="nav1">Стратегии</a>
+        <a href="#practice" data-i18n="nav2">Практика</a>
+        <a href="#contacts" data-i18n="nav3">Контакты</a>
+      </nav>
+      <div class="lang" id="lang" role="group" aria-label="Language">
+        <button type="button" data-l="ru" class="on" aria-pressed="true">RU</button>
+        <button type="button" data-l="lv" aria-pressed="false">LV</button>
+        <button type="button" data-l="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
   </div>
 </header>
 
 <main id="top">
   <div class="hero">
     <div class="wrap">
-      <p class="eyebrow reveal">Портфолио · 2026</p>
-      <h1 class="reveal">Бажок<br>Даниил</h1>
-      <p class="sub reveal">Специалист по рекламе и связям с общественностью <span>(студент 3 курса направления «Реклама и связи с общественностью»)</span></p>
-      <p class="loc reveal">Калининград • Гражданство Латвии • 2005 г.р.</p>
+      <p class="eyebrow reveal" data-i18n="eyebrow">Портфолио · 2026</p>
+      <h1 class="reveal" data-i18n-html="name">Бажок<br>Даниил</h1>
+      <p class="sub reveal" data-i18n-html="sub">Специалист по рекламе и связям с общественностью <span>(студент 3 курса направления «Реклама и связи с общественностью»)</span></p>
+      <p class="loc reveal" data-i18n="loc">Калининград • Гражданство Латвии • 2005 г.р.</p>
       <div class="tags reveal">
-        <span class="tag">PR-стратегии</span>
-        <span class="tag">Коммуникационный аудит</span>
-        <span class="tag">Копирайтинг и работа со СМИ</span>
-        <span class="tag">SMM и контент-маркетинг</span>
-        <span class="tag">Брендинг и мерч</span>
-        <span class="tag">Полиграфия и реклама</span>
+        <span class="tag" data-i18n="tag1">PR-стратегии</span>
+        <span class="tag" data-i18n="tag2">Коммуникационный аудит</span>
+        <span class="tag" data-i18n="tag3">Копирайтинг и работа со СМИ</span>
+        <span class="tag" data-i18n="tag4">SMM и контент-маркетинг</span>
+        <span class="tag" data-i18n="tag5">Брендинг и мерч</span>
+        <span class="tag" data-i18n="tag6">Полиграфия и реклама</span>
       </div>
       <div class="btns reveal">
-        <a href="#strategies" class="btn btn-w">Смотреть проекты</a>
-        <a href="#contacts" class="btn btn-o">Связаться</a>
+        <a href="#strategies" class="btn btn-w" data-i18n="btnProjects">Смотреть проекты</a>
+        <a href="#contacts" class="btn btn-o" data-i18n="btnContact">Связаться</a>
       </div>
     </div>
   </div>
@@ -225,9 +241,9 @@ footer{border-top:1px solid var(--line);padding:44px 0}
   <section id="strategies">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="num">01 / Стратегии</p>
-        <h2>Стратегические PR- и SMM-проекты</h2>
-        <p>Четыре учебных кейса, разобранных до слайда с бюджетом. Каждый открывается как презентация.</p>
+        <p class="num" data-i18n="s1num">01 / Стратегии</p>
+        <h2 data-i18n="s1h">Стратегические PR- и SMM-проекты</h2>
+        <p data-i18n="s1p">Четыре учебных кейса, разобранных до слайда с бюджетом. Каждый открывается как презентация.</p>
       </div>
       <div class="cases" id="cases"></div>
     </div>
@@ -236,9 +252,9 @@ footer{border-top:1px solid var(--line);padding:44px 0}
   <section id="practice">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="num">02 / Практика</p>
-        <h2>Практические работы</h2>
-        <p>Пресс-релизы, мерч, визитки, наружка. Клик по работе открывает её на весь экран, там же можно приблизить текст.</p>
+        <p class="num" data-i18n="s2num">02 / Практика</p>
+        <h2 data-i18n="s2h">Практические работы</h2>
+        <p data-i18n="s2p">Пресс-релизы, мерч, визитки, наружка. Клик по работе открывает её на весь экран, там же можно приблизить текст.</p>
       </div>
       <div class="filters reveal" id="filters"></div>
       <div class="works" id="works"></div>
@@ -249,27 +265,25 @@ footer{border-top:1px solid var(--line);padding:44px 0}
     <div class="wrap">
       <div class="contact reveal">
         <div>
-          <p class="num">03 / Контакты</p>
-          <h2>Давайте обсудим задачу</h2>
-          <p class="lead">Пишите или звоните. Отвечаю быстро, особенно если в письме есть бриф.</p>
+          <p class="num" data-i18n="s3num">03 / Контакты</p>
+          <h2 data-i18n="s3h">Давайте обсудим задачу</h2>
+          <p class="lead" data-i18n="s3p">Пишите или звоните. Отвечаю быстро, особенно если в письме есть бриф.</p>
         </div>
         <div class="rows">
           <div class="row">
-            <div><div class="lbl">Телефон</div><a class="val" href="tel:+79118542359">+7 (911) 854 23 59</a></div>
-            <button class="copy" type="button" data-copy="+7 (911) 854 23 59">Скопировать</button>
+            <div><div class="lbl" data-i18n="lblPhone">Телефон</div><a class="val" href="tel:+79118542359">+7 (911) 854 23 59</a></div>
+            <button class="copy" type="button" data-copy="+7 (911) 854 23 59" data-i18n="copy">Скопировать</button>
           </div>
           <div class="row">
-            <div><div class="lbl">Почта (Яндекс)</div><a class="val" href="mailto:danbazhok@yandex.ru">danbazhok@yandex.ru</a>
-</div>
-            <button class="copy" type="button" data-copy="danbazhok@yandex.ru">Скопировать</button>
+            <div><div class="lbl" data-i18n="lblYandex">Почта (Яндекс)</div><a class="val" data-mail data-u="danbazhok" data-d="yandex.ru" href="#"></a></div>
+            <button class="copy" type="button" data-u="danbazhok" data-d="yandex.ru" data-i18n="copy">Скопировать</button>
           </div>
           <div class="row">
-            <div><div class="lbl">Почта (Gmail)</div><a class="val" href="mailto:danikbazok@gmail.com">danikbazok@gmail.com</a>
-</div>
-            <button class="copy" type="button" data-copy="danikbazok@gmail.com">Скопировать</button>
+            <div><div class="lbl" data-i18n="lblGmail">Почта (Gmail)</div><a class="val" data-mail data-u="danikbazok" data-d="gmail.com" href="#"></a></div>
+            <button class="copy" type="button" data-u="danikbazok" data-d="gmail.com" data-i18n="copy">Скопировать</button>
           </div>
           <div class="row">
-            <div><div class="lbl">Локация</div><span class="val">Калининград</span></div>
+            <div><div class="lbl" data-i18n="lblLoc">Локация</div><span class="val" data-i18n="locVal">Калининград</span></div>
           </div>
         </div>
       </div>
@@ -279,130 +293,256 @@ footer{border-top:1px solid var(--line);padding:44px 0}
 
 <footer>
   <div class="wrap foot">
-    <img src="logo%20white.png" alt="Логотип" loading="lazy">
-    <p>© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR</p>
+    <img src="logo%20white.png" alt="" data-i18n-alt="logo" loading="lazy">
+    <p data-i18n="copyright">© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR</p>
   </div>
 </footer>
 
 <!-- slider modal -->
-<div class="modal" id="sl" role="dialog" aria-modal="true" aria-label="Презентация">
+<div class="modal" id="sl" role="dialog" aria-modal="true">
   <div class="m-top">
     <div class="m-title" id="sl-title"></div>
-    <div class="m-right"><span class="counter" id="sl-count"></span><button class="x" id="sl-close" aria-label="Закрыть">✕</button></div>
+    <div class="m-right"><span class="counter" id="sl-count"></span><button class="x" id="sl-close" data-i18n-aria="close">✕</button></div>
   </div>
   <div class="stage" id="sl-stage">
-    <button class="arrow prev" id="sl-prev" aria-label="Назад">←</button>
+    <button class="arrow prev" id="sl-prev" data-i18n-aria="prev">←</button>
     <img class="cur" id="sl-img" alt="">
-    <button class="arrow next" id="sl-next" aria-label="Вперёд">→</button>
+    <button class="arrow next" id="sl-next" data-i18n-aria="next">→</button>
   </div>
   <div class="thumbs" id="sl-thumbs"></div>
 </div>
 
 <!-- lightbox -->
-<div class="modal" id="lb" role="dialog" aria-modal="true" aria-label="Работа">
+<div class="modal" id="lb" role="dialog" aria-modal="true">
   <div class="m-top">
     <div class="m-title" id="lb-title"></div>
-    <div class="m-right"><span class="counter" id="lb-count"></span><button class="x" id="lb-close" aria-label="Закрыть">✕</button></div>
+    <div class="m-right"><span class="counter" id="lb-count"></span><button class="x" id="lb-close" data-i18n-aria="close">✕</button></div>
   </div>
   <div class="stage" id="lb-stage">
-    <button class="arrow prev" id="lb-prev" aria-label="Назад">←</button>
+    <button class="arrow prev" id="lb-prev" data-i18n-aria="prev">←</button>
     <div class="scroller" id="lb-scroll"><img id="lb-img" alt=""></div>
-    <button class="arrow next" id="lb-next" aria-label="Вперёд">→</button>
-    <div class="hint" id="lb-hint">Клик по картинке: приблизить</div>
+    <button class="arrow next" id="lb-next" data-i18n-aria="next">→</button>
+    <div class="hint" id="lb-hint"></div>
   </div>
 </div>
 
-<div class="toast" id="toast">Скопировано!</div>
+<div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 document.body.classList.remove('no-js');
 
 const src = n => encodeURI(n);
 const seq = (p, n) => Array.from({length:n}, (_, i) => `${p} ${i+1}.jpg`);
+const AT = String.fromCharCode(64);
+const mail = (u, d) => u + AT + d;
 
+/* ---------- переводы интерфейса ---------- */
+const T = {
+  ru:{
+    title:'Бажок Даниил · Реклама и PR',
+    desc:'Портфолио Даниила Бажка, специалиста по рекламе и связям с общественностью. Калининград.',
+    toTop:'Наверх', logo:'Логотип',
+    nav1:'Стратегии', nav2:'Практика', nav3:'Контакты',
+    eyebrow:'Портфолио · 2026',
+    name:'Бажок<br>Даниил',
+    sub:'Специалист по рекламе и связям с общественностью <span>(студент 3 курса направления «Реклама и связи с общественностью»)</span>',
+    loc:'Калининград • Гражданство Латвии • 2005 г.р.',
+    tag1:'PR-стратегии', tag2:'Коммуникационный аудит', tag3:'Копирайтинг и работа со СМИ',
+    tag4:'SMM и контент-маркетинг', tag5:'Брендинг и мерч', tag6:'Полиграфия и реклама',
+    btnProjects:'Смотреть проекты', btnContact:'Связаться',
+    s1num:'01 / Стратегии', s1h:'Стратегические PR- и SMM-проекты',
+    s1p:'Четыре учебных кейса, разобранных до слайда с бюджетом. Каждый открывается как презентация.',
+    task:'Задача:', sol:'Решение:',
+    viewPres:n => `Смотреть презентацию (${n} слайдов)`,
+    slide:'Слайд',
+    s2num:'02 / Практика', s2h:'Практические работы',
+    s2p:'Пресс-релизы, мерч, визитки, наружка. Клик по работе открывает её на весь экран, там же можно приблизить текст.',
+    all:'Все работы',
+    hintIn:'Клик по картинке: приблизить', hintOut:'Клик: уменьшить. Двигайте, чтобы читать',
+    s3num:'03 / Контакты', s3h:'Давайте обсудим задачу',
+    s3p:'Пишите или звоните. Отвечаю быстро, особенно если в письме есть бриф.',
+    lblPhone:'Телефон', lblYandex:'Почта (Яндекс)', lblGmail:'Почта (Gmail)', lblLoc:'Локация', locVal:'Калининград',
+    copy:'Скопировать', copied:'Скопировано!',
+    close:'Закрыть', prev:'Назад', next:'Вперёд',
+    copyright:'© 2026 Бажок Даниил. Портфолио специалиста по рекламе и PR'
+  },
+  lv:{
+    title:'Daņils Bažoks · Reklāma un PR',
+    desc:'Daņila Bažoka portfolio, reklāmas un sabiedrisko attiecību speciālists. Kaļiņingrada.',
+    toTop:'Uz augšu', logo:'Logotips',
+    nav1:'Stratēģijas', nav2:'Prakse', nav3:'Kontakti',
+    eyebrow:'Portfolio · 2026',
+    name:'Daņils<br>Bažoks',
+    sub:'Reklāmas un sabiedrisko attiecību speciālists <span>(3. kursa students, studiju virziens «Reklāma un sabiedriskās attiecības»)</span>',
+    loc:'Kaļiņingrada • Latvijas pilsonība • dzimis 2005. gadā',
+    tag1:'PR stratēģijas', tag2:'Komunikācijas audits', tag3:'Teksti un darbs ar medijiem',
+    tag4:'SMM un satura mārketings', tag5:'Brendings un merčs', tag6:'Poligrāfija un reklāma',
+    btnProjects:'Skatīt projektus', btnContact:'Sazināties',
+    s1num:'01 / Stratēģijas', s1h:'Stratēģiskie PR un SMM projekti',
+    s1p:'Četri mācību gadījumi, izstrādāti līdz pat budžeta slaidam. Katrs atveras kā prezentācija.',
+    task:'Uzdevums:', sol:'Risinājums:',
+    viewPres:n => `Skatīt prezentāciju (${n} slaidi)`,
+    slide:'Slaids',
+    s2num:'02 / Prakse', s2h:'Praktiskie darbi',
+    s2p:'Preses relīzes, merčs, vizītkartes, āra reklāma. Klikšķis uz darba atver to pilnekrānā, tur tekstu var arī pietuvināt.',
+    all:'Visi darbi',
+    hintIn:'Klikšķis uz attēla: pietuvināt', hintOut:'Klikšķis: tālināt. Velciet, lai lasītu',
+    s3num:'03 / Kontakti', s3h:'Pārrunāsim uzdevumu',
+    s3p:'Rakstiet vai zvaniet. Atbildu ātri, īpaši ja vēstulē ir īss brīfs.',
+    lblPhone:'Tālrunis', lblYandex:'E-pasts (Yandex)', lblGmail:'E-pasts (Gmail)', lblLoc:'Atrašanās vieta', locVal:'Kaļiņingrada',
+    copy:'Kopēt', copied:'Nokopēts!',
+    close:'Aizvērt', prev:'Atpakaļ', next:'Uz priekšu',
+    copyright:'© 2026 Daņils Bažoks. Reklāmas un PR speciālista portfolio'
+  },
+  en:{
+    title:'Daniil Bazhok · Advertising & PR',
+    desc:'Portfolio of Daniil Bazhok, advertising and public relations specialist. Kaliningrad.',
+    toTop:'Back to top', logo:'Logo',
+    nav1:'Strategies', nav2:'Practice', nav3:'Contact',
+    eyebrow:'Portfolio · 2026',
+    name:'Daniil<br>Bazhok',
+    sub:'Advertising and public relations specialist <span>(3rd-year student, Advertising and Public Relations programme)</span>',
+    loc:'Kaliningrad • Latvian citizenship • Born 2005',
+    tag1:'PR strategies', tag2:'Communications audit', tag3:'Copywriting and media relations',
+    tag4:'SMM and content marketing', tag5:'Branding and merch', tag6:'Print and advertising',
+    btnProjects:'View projects', btnContact:'Get in touch',
+    s1num:'01 / Strategies', s1h:'Strategic PR and SMM projects',
+    s1p:'Four academic cases, worked through down to the budget slide. Each one opens as a presentation.',
+    task:'Task:', sol:'Solution:',
+    viewPres:n => `View presentation (${n} slides)`,
+    slide:'Slide',
+    s2num:'02 / Practice', s2h:'Practical work',
+    s2p:'Press releases, merch, business cards, outdoor ads. Click a work to open it full screen, where you can also zoom into the text.',
+    all:'All work',
+    hintIn:'Click the image to zoom in', hintOut:'Click to zoom out. Drag to read',
+    s3num:'03 / Contact', s3h:"Let's discuss your task",
+    s3p:'Write or call. I reply fast, especially when the email comes with a brief.',
+    lblPhone:'Phone', lblYandex:'Email (Yandex)', lblGmail:'Email (Gmail)', lblLoc:'Location', locVal:'Kaliningrad',
+    copy:'Copy', copied:'Copied!',
+    close:'Close', prev:'Back', next:'Next',
+    copyright:'© 2026 Daniil Bazhok. Advertising and PR specialist portfolio'
+  }
+};
+
+/* ---------- данные ---------- */
 const CASES = [
-  {tag:'Коммуникационный аудит', title:'Анализ коммуникационной стратегии компании «Геоскан»', cover:'geo 1.jpg', slides:seq('geo',26),
-   task:'оценить внешние и внутренние коммуникации компании и понять, где теряется аудитория.',
-   sol:'комплексный аудит, анализ присутствия в информационном поле, выявление барьеров и разработка решений.'},
-  {tag:'Молодёжная аудитория', title:'Стратегия привлечения молодёжной аудитории: «Кефир для молодёжи»', cover:'kef 1.jpg', slides:seq('kef',13),
-   task:'вывести продукт в поле зрения молодёжи, которая обычно проходит мимо.',
-   sol:'исследование целевой аудитории, креативные механики, спецпроекты (интеграция в VK Fest) и медиапланирование.'},
-  {tag:'Стратегия коммуникаций', title:'Новые каналы коммуникации для Музея Мирового океана', cover:'mmo 1.jpg', slides:seq('mmo',23),
-   task:'привлечь аудиторию 18–35 лет.',
-   sol:'новые форматы контента, спецпроекты и расчёт бюджета.'},
-  {tag:'SMM', title:'SMM-аудит и концепция публикаций ВКонтакте для Музея Мирового океана', cover:'posti 1.jpg', slides:seq('posti',7),
-   task:'разобраться, почему текущий контент слабо вовлекает.',
-   sol:'аудит контента, единая визуальная айдентика, структура постов и рост вовлечённости.'}
+  {cover:'geo 1.jpg', slides:seq('geo',26),
+   tag:{ru:'Коммуникационный аудит', lv:'Komunikācijas audits', en:'Communications audit'},
+   title:{ru:'Анализ коммуникационной стратегии компании «Геоскан»', lv:'Uzņēmuma «Geoscan» komunikācijas stratēģijas analīze', en:'Communications strategy analysis for Geoscan'},
+   task:{ru:'оценить внешние и внутренние коммуникации компании и понять, где теряется аудитория.',
+         lv:'novērtēt uzņēmuma ārējo un iekšējo komunikāciju un saprast, kur tiek zaudēta auditorija.',
+         en:"assess the company's external and internal communications and find where the audience is lost."},
+   sol:{ru:'комплексный аудит, анализ присутствия в информационном поле, выявление барьеров и разработка решений.',
+        lv:'kompleksa audita veikšana, klātbūtnes informatīvajā telpā analīze, barjeru identificēšana un risinājumu izstrāde.',
+        en:'a full audit, analysis of presence in the information field, identifying barriers and developing solutions.'}},
+  {cover:'kef 1.jpg', slides:seq('kef',13),
+   tag:{ru:'Молодёжная аудитория', lv:'Jauniešu auditorija', en:'Youth audience'},
+   title:{ru:'Стратегия привлечения молодёжной аудитории: «Кефир для молодёжи»', lv:'Jauniešu auditorijas piesaistes stratēģija: «Kefīrs jauniešiem»', en:'Youth audience strategy: "Kefir for the Young"'},
+   task:{ru:'вывести продукт в поле зрения молодёжи, которая обычно проходит мимо.',
+         lv:'padarīt produktu redzamu jauniešiem, kuri parasti paiet garām.',
+         en:'put the product in front of young people who usually walk past it.'},
+   sol:{ru:'исследование целевой аудитории, креативные механики, спецпроекты (интеграция в VK Fest) и медиапланирование.',
+        lv:'mērķauditorijas izpēte, radošas mehānikas, speciālie projekti (integrācija VK Fest) un mediju plānošana.',
+        en:'target audience research, creative mechanics, special projects (VK Fest integration) and media planning.'}},
+  {cover:'mmo 1.jpg', slides:seq('mmo',23),
+   tag:{ru:'Стратегия коммуникаций', lv:'Komunikācijas stratēģija', en:'Communications strategy'},
+   title:{ru:'Новые каналы коммуникации для Музея Мирового океана', lv:'Jauni komunikācijas kanāli Pasaules okeāna muzejam', en:'New communication channels for the Museum of the World Ocean'},
+   task:{ru:'привлечь аудиторию 18–35 лет.', lv:'piesaistīt 18–35 gadus vecu auditoriju.', en:'attract an audience aged 18–35.'},
+   sol:{ru:'новые форматы контента, спецпроекты и расчёт бюджета.', lv:'jauni satura formāti, speciālie projekti un budžeta aprēķins.', en:'new content formats, special projects and a budget calculation.'}},
+  {cover:'posti 1.jpg', slides:seq('posti',7),
+   tag:{ru:'SMM', lv:'SMM', en:'SMM'},
+   title:{ru:'SMM-аудит и концепция публикаций ВКонтакте для Музея Мирового океана', lv:'SMM audits un publikāciju koncepcija VKontakte Pasaules okeāna muzejam', en:'SMM audit and VKontakte publication concept for the Museum of the World Ocean'},
+   task:{ru:'разобраться, почему текущий контент слабо вовлекает.', lv:'noskaidrot, kāpēc pašreizējais saturs maz iesaista.', en:'find out why the current content engages so little.'},
+   sol:{ru:'аудит контента, единая визуальная айдентика, структура постов и рост вовлечённости.',
+        lv:'satura audits, vienota vizuālā identitāte, ierakstu struktūra un iesaistes pieaugums.',
+        en:'a content audit, a unified visual identity, post structure and growth in engagement.'}}
 ];
 
 const CATS = {
-  pr:{name:'PR-тексты и СМИ', items:[
-    ['BFUpress.png','Пресс-релиз (БФУ им. И. Канта)'],
-    ['case story.png','Кейс-стори / История успеха (Traf)'],
-    ['Dlja smi.png','Информационная справка для СМИ (Traf)'],
-    ['komment.png','Экспертный комментарий для прессы (Traf)'],
-    ['Backrgaunder.png','Бэкграундер для медиа (Traf)'],
-    ['Garantijnoe pismo.png','Официальное гарантийное письмо'],
-    ['komerceskij zapros.png','Коммерческий запрос'],
-    ['otkritoe pismo.png','Открытое письмо']]},
-  ck:{name:'Мерч и айдентика (CK)', items:[
-    ['bejdz.png','Фирменные бейджи на лентах'],
-    ['CK Mockup-copy-0.png','Бейдж и пропуск CK'],
-    ['CK mokup.png','Настольные таблички CK'],
-    ['CK notes.png','Фирменный блокнот CK'],
-    ['CKgroup.png','Визитки CK Group'],
-    ['CK kepka.png','Брендированная кепка CK'],
-    ['CK kruzka.png','Фирменные термокружки CK'],
-    ['CK may 1.png','Дизайн худи CK (вариант 1)'],
-    ['CK may 2.png','Дизайн худи CK (вариант 2)']]},
-  print:{name:'Полиграфия и визитки', items:[
-    ['vizitki salon.png','Визитки для салона / студии'],
-    ['vizitkistroika.png','Визитки для строительной компании'],
-    ['roschip.png','Фирменная визитка «Росчип»'],
-    ['mokapkafe.png','Визитка для кофейни'],
-    ['menu.png','Дизайн меню для заведения'],
-    ['price list.png','Оформление прайс-листа']]},
-  ad:{name:'Наружная и цифровая реклама', items:[
-    ['kofe.jpg','Наружная реклама на остановке (сити-формат) для кофейни'],
-    ['market.png','Рекламный баннер для маркетплейса (акция -50%)'],
-    ['noziki.png','Рекламный креатив / карточка товара NOZIK 39']]}
+  pr:{name:{ru:'PR-тексты и СМИ', lv:'PR teksti un mediji', en:'PR texts and media'}, items:[
+    ['BFUpress.png',{ru:'Пресс-релиз (БФУ им. И. Канта)', lv:'Preses relīze (I. Kanta BFU)', en:'Press release (Immanuel Kant Baltic Federal University)'}],
+    ['case story.png',{ru:'Кейс-стори / История успеха (Traf)', lv:'Gadījuma stāsts / veiksmes stāsts (Traf)', en:'Case story / Success story (Traf)'}],
+    ['Dlja smi.png',{ru:'Информационная справка для СМИ (Traf)', lv:'Informatīvā izziņa medijiem (Traf)', en:'Media fact sheet (Traf)'}],
+    ['komment.png',{ru:'Экспертный комментарий для прессы (Traf)', lv:'Eksperta komentārs presei (Traf)', en:'Expert comment for the press (Traf)'}],
+    ['Backrgaunder.png',{ru:'Бэкграундер для медиа (Traf)', lv:'Backgrounder medijiem (Traf)', en:'Media backgrounder (Traf)'}],
+    ['Garantijnoe pismo.png',{ru:'Официальное гарантийное письмо', lv:'Oficiāla garantijas vēstule', en:'Official letter of guarantee'}],
+    ['komerceskij zapros.png',{ru:'Коммерческий запрос', lv:'Komercpieprasījums', en:'Commercial inquiry'}],
+    ['otkritoe pismo.png',{ru:'Открытое письмо', lv:'Atklātā vēstule', en:'Open letter'}]]},
+  ck:{name:{ru:'Мерч и айдентика (CKgroup)', lv:'Merčs un identitāte (CKgroup)', en:'Merch and identity (CKgroup)'}, items:[
+    ['CK Mockup-copy-0.png',{ru:'Бейдж и пропуск CKgroup', lv:'CKgroup nozīmīte un caurlaide', en:'CKgroup badge and pass'}],
+    ['CK mokup.png',{ru:'Настольные таблички CKgroup', lv:'CKgroup galda plāksnītes', en:'CKgroup desk nameplates'}],
+    ['CK notes.png',{ru:'Фирменный блокнот CKgroup', lv:'CKgroup firmas bloknots', en:'CKgroup branded notebook'}],
+    ['CKgroup.png',{ru:'Визитки CKgroup', lv:'CKgroup vizītkartes', en:'CKgroup business cards'}],
+    ['CK kepka.png',{ru:'Брендированная кепка CKgroup', lv:'CKgroup brendēta cepure', en:'CKgroup branded cap'}],
+    ['CK kruzka.png',{ru:'Фирменные термокружки CKgroup', lv:'CKgroup firmas termokrūzes', en:'CKgroup branded thermo mugs'}],
+    ['CK may 1.png',{ru:'Дизайн худи CKgroup (вариант 1)', lv:'CKgroup hūdija dizains (1. variants)', en:'CKgroup hoodie design (option 1)'}],
+    ['CK may 2.png',{ru:'Дизайн худи CKgroup (вариант 2)', lv:'CKgroup hūdija dizains (2. variants)', en:'CKgroup hoodie design (option 2)'}]]},
+  print:{name:{ru:'Полиграфия и визитки', lv:'Poligrāfija un vizītkartes', en:'Print and business cards'}, items:[
+    ['vizitki salon.png',{ru:'Визитки для салона / студии', lv:'Vizītkartes salonam / studijai', en:'Business cards for a salon / studio'}],
+    ['vizitkistroika.png',{ru:'Визитки для строительной компании', lv:'Vizītkartes būvniecības uzņēmumam', en:'Business cards for a construction company'}],
+    ['roschip.png',{ru:'Фирменная визитка «Росчип»', lv:'«Roschip» firmas vizītkarte', en:'Roschip branded business card'}],
+    ['mokapkafe.png',{ru:'Визитка для кофейни', lv:'Vizītkarte kafejnīcai', en:'Business card for a coffee shop'}],
+    ['menu.png',{ru:'Дизайн меню для заведения', lv:'Ēdienkartes dizains iestādei', en:'Menu design for a venue'}],
+    ['price list.png',{ru:'Оформление прайс-листа', lv:'Cenrāža noformējums', en:'Price list design'}],
+    ['bejdz.png',{ru:'Фирменные бейджи на лентах (TechMarket)', lv:'Firmas nozīmītes uz lentēm (TechMarket)', en:'Branded lanyard badges (TechMarket)'}]]},
+  ad:{name:{ru:'Наружная и цифровая реклама', lv:'Āra un digitālā reklāma', en:'Outdoor and digital advertising'}, items:[
+    ['kofe.jpg',{ru:'Наружная реклама на остановке (сити-формат) для кофейни', lv:'Āra reklāma pieturā (city formāts) kafejnīcai', en:'Bus-stop outdoor ad (city format) for a coffee shop'}],
+    ['market.png',{ru:'Рекламный баннер для маркетплейса (акция -50%)', lv:'Reklāmas baneris tirdzniecības platformai (akcija -50%)', en:'Marketplace ad banner (-50% sale)'}],
+    ['noziki.png',{ru:'Рекламный креатив / карточка товара NOZIK 39', lv:'Reklāmas kreatīvs / preces karte NOZIK 39', en:'Ad creative / product card NOZIK 39'}]]}
 };
-const ALL = Object.entries(CATS).flatMap(([k,c]) => c.items.map(([f,t]) => ({file:f,title:t,cat:k,catName:c.name})));
+const ALL = Object.entries(CATS).flatMap(([k,c]) => c.items.map(([f,t]) => ({file:f,title:t,cat:k})));
 
-/* cases */
+/* ---------- язык ---------- */
+let lang = 'ru';
+try { const s = localStorage.getItem('lang'); if (s && T[s]) lang = s; } catch {}
+const t = k => T[lang][k];
+
+/* ---------- кейсы ---------- */
 const casesEl = document.getElementById('cases');
 CASES.forEach((c, i) => {
   const el = document.createElement('article');
   el.className = 'case reveal';
   el.innerHTML = `
-    <div class="media" data-i="${i}"><img src="${src(c.cover)}" alt="${c.title}" loading="lazy" decoding="async"></div>
+    <div class="media" data-i="${i}"><img src="${src(c.cover)}" alt="" loading="lazy" decoding="async"></div>
     <div class="case-body">
-      <div class="kicker">${c.tag}</div>
-      <h3>${c.title}</h3>
-      <dl><dt>Задача:</dt> <dd>${c.task}</dd><dt>Решение:</dt> <dd>${c.sol}</dd></dl>
-      <button class="btn btn-w" data-i="${i}">Смотреть презентацию (${c.slides.length} слайдов)</button>
+      <div class="kicker"></div>
+      <h3></h3>
+      <dl><dt data-i18n="task"></dt> <dd class="c-task"></dd><dt data-i18n="sol"></dt> <dd class="c-sol"></dd></dl>
+      <button class="btn btn-w" data-i="${i}"></button>
     </div>`;
   casesEl.appendChild(el);
 });
 casesEl.addEventListener('click', e => {
-  const t = e.target.closest('[data-i]');
-  if (t) openSlider(+t.dataset.i);
+  const x = e.target.closest('[data-i]');
+  if (x) openSlider(+x.dataset.i);
 });
+function updateCases(){
+  [...casesEl.children].forEach((el, i) => {
+    const c = CASES[i];
+    el.querySelector('img').alt = c.title[lang];
+    el.querySelector('.kicker').textContent = c.tag[lang];
+    el.querySelector('h3').textContent = c.title[lang];
+    el.querySelector('.c-task').textContent = c.task[lang];
+    el.querySelector('.c-sol').textContent = c.sol[lang];
+    el.querySelector('button').textContent = t('viewPres')(c.slides.length);
+  });
+}
 
-/* works + filters */
+/* ---------- работы и фильтры ---------- */
 const filtersEl = document.getElementById('filters');
 const worksEl = document.getElementById('works');
 let current = 'all', list = ALL;
-const tabs = [['all','Все работы'], ...Object.entries(CATS).map(([k,c]) => [k,c.name])];
-tabs.forEach(([k,n]) => {
+['all', ...Object.keys(CATS)].forEach(k => {
   const b = document.createElement('button');
-  b.textContent = n; b.dataset.k = k;
+  b.dataset.k = k;
   if (k === 'all') b.classList.add('on');
   filtersEl.appendChild(b);
 });
+const tabName = k => k === 'all' ? t('all') : CATS[k].name[lang];
+function updateFilters(){ [...filtersEl.children].forEach(b => b.textContent = tabName(b.dataset.k)); }
 filtersEl.addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
-  filtersEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  [...filtersEl.children].forEach(x => x.classList.toggle('on', x === b));
   current = b.dataset.k;
   renderWorks();
 });
@@ -414,17 +554,25 @@ function renderWorks(){
     el.className = 'work';
     el.style.animationDelay = (i * 40) + 'ms';
     el.dataset.i = i;
-    el.innerHTML = `<div class="media"><img src="${src(w.file)}" alt="${w.title}" loading="lazy" decoding="async"></div><p><small>${w.catName}</small>${w.title}</p>`;
+    el.innerHTML = `<div class="media"><img src="${src(w.file)}" alt="" loading="lazy" decoding="async"></div><p><small></small><span></span></p>`;
     worksEl.appendChild(el);
+  });
+  updateWorkTexts();
+}
+function updateWorkTexts(){
+  [...worksEl.children].forEach((el, i) => {
+    const w = list[i];
+    el.querySelector('img').alt = w.title[lang];
+    el.querySelector('small').textContent = CATS[w.cat].name[lang];
+    el.querySelector('span').textContent = w.title[lang];
   });
 }
 worksEl.addEventListener('click', e => {
   const w = e.target.closest('.work');
   if (w) openLb(+w.dataset.i);
 });
-renderWorks();
 
-/* modal helpers */
+/* ---------- модалки ---------- */
 let active = null;
 function showModal(m){
   m.classList.add('open'); requestAnimationFrame(() => m.classList.add('vis'));
@@ -436,19 +584,25 @@ function hideModal(m){
   document.body.classList.remove('locked'); active = null;
 }
 
-/* slider: картинки слайдов и миниатюр создаются только при открытии модалки */
+/* слайдер: картинки создаются только при открытии */
 const sl = document.getElementById('sl'), slImg = document.getElementById('sl-img'),
       slCount = document.getElementById('sl-count'), slTitle = document.getElementById('sl-title'),
       slThumbs = document.getElementById('sl-thumbs'), slStage = document.getElementById('sl-stage');
 let slides = [], si = 0, slCase = null;
 
+function slTexts(){
+  if (!slCase) return;
+  slTitle.innerHTML = '';
+  slTitle.append(slCase.title[lang]);
+  const s = document.createElement('small'); s.textContent = slCase.tag[lang]; slTitle.appendChild(s);
+  slImg.alt = `${slCase.title[lang]}, ${t('slide').toLowerCase()} ${si+1}`;
+  [...slThumbs.children].forEach((b, i) => b.setAttribute('aria-label', `${t('slide')} ${i+1}`));
+}
 function openSlider(ci){
   slCase = CASES[ci]; slides = slCase.slides; si = 0;
-  slTitle.innerHTML = `${slCase.title}<small>${slCase.tag}</small>`;
   slThumbs.innerHTML = '';
   slides.forEach((f, i) => {
     const b = document.createElement('button');
-    b.setAttribute('aria-label', 'Слайд ' + (i+1));
     b.innerHTML = `<img src="${src(f)}" alt="" loading="lazy" decoding="async">`;
     b.onclick = () => goSlide(i);
     slThumbs.appendChild(b);
@@ -459,53 +613,55 @@ function openSlider(ci){
 function goSlide(i){
   si = (i + slides.length) % slides.length;
   slImg.src = src(slides[si]);
-  slImg.alt = `${slCase.title}, слайд ${si+1}`;
   slCount.textContent = `${si+1} / ${slides.length}`;
   [...slThumbs.children].forEach((b, k) => b.classList.toggle('on', k === si));
-  const t = slThumbs.children[si];
-  if (t) slThumbs.scrollTo({left: t.offsetLeft - slThumbs.clientWidth/2 + t.clientWidth/2, behavior:'smooth'});
+  const th = slThumbs.children[si];
+  if (th) slThumbs.scrollTo({left: th.offsetLeft - slThumbs.clientWidth/2 + th.clientWidth/2, behavior:'smooth'});
+  slTexts();
 }
 document.getElementById('sl-prev').onclick = () => goSlide(si-1);
 document.getElementById('sl-next').onclick = () => goSlide(si+1);
 document.getElementById('sl-close').onclick = () => hideModal(sl);
-sl.addEventListener('click', e => {
-  if (e.target === sl || e.target === slStage) hideModal(sl);
-});
+sl.addEventListener('click', e => { if (e.target === sl || e.target === slStage) hideModal(sl); });
 
-/* swipe */
 function swipe(el, onL, onR){
-  let x = 0, y = 0, t = 0;
-  el.addEventListener('touchstart', e => { x = e.touches[0].clientX; y = e.touches[0].clientY; t = Date.now(); }, {passive:true});
+  let x = 0, y = 0, tm = 0;
+  el.addEventListener('touchstart', e => { x = e.touches[0].clientX; y = e.touches[0].clientY; tm = Date.now(); }, {passive:true});
   el.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - x, dy = e.changedTouches[0].clientY - y;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - t < 700) dx < 0 ? onL() : onR();
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - tm < 700) dx < 0 ? onL() : onR();
   }, {passive:true});
 }
 swipe(slStage, () => goSlide(si+1), () => goSlide(si-1));
 
-/* lightbox */
+/* лайтбокс */
 const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'),
       lbScroll = document.getElementById('lb-scroll'), lbStage = document.getElementById('lb-stage'),
       lbTitle = document.getElementById('lb-title'), lbCount = document.getElementById('lb-count'),
       lbHint = document.getElementById('lb-hint');
-let li = 0, lbList = [];
+let li = 0, lbList = [], zoomed = false;
 
-function openLb(i){
-  lbList = list; showModal(lb); goLb(i);
+function lbTexts(){
+  const w = lbList[li]; if (!w) return;
+  lbImg.alt = w.title[lang];
+  lbTitle.innerHTML = '';
+  lbTitle.append(w.title[lang]);
+  const s = document.createElement('small'); s.textContent = CATS[w.cat].name[lang]; lbTitle.appendChild(s);
+  lbHint.textContent = zoomed ? t('hintOut') : t('hintIn');
 }
+function openLb(i){ lbList = list; showModal(lb); goLb(i); }
 function goLb(i){
   li = (i + lbList.length) % lbList.length;
-  const w = lbList[li];
   setZoom(false);
-  lbImg.src = src(w.file);
-  lbImg.alt = w.title;
-  lbTitle.innerHTML = `${w.title}<small>${w.catName}</small>`;
+  lbImg.src = src(lbList[li].file);
   lbCount.textContent = `${li+1} / ${lbList.length}`;
+  lbTexts();
 }
 function setZoom(on, ev){
-  const was = lbScroll.classList.contains('zoom');
+  const was = zoomed;
+  zoomed = on;
   lbScroll.classList.toggle('zoom', on);
-  lbHint.textContent = on ? 'Клик: уменьшить. Двигайте, чтобы читать' : 'Клик по картинке: приблизить';
+  lbHint.textContent = on ? t('hintOut') : t('hintIn');
   if (on && !was){
     let fx = .5, fy = .5;
     if (ev){
@@ -519,12 +675,11 @@ function setZoom(on, ev){
   } else if (!on){ lbScroll.scrollLeft = 0; lbScroll.scrollTop = 0; }
 }
 let moved = false;
-lbImg.addEventListener('click', e => { if (!moved) setZoom(!lbScroll.classList.contains('zoom'), e); });
+lbImg.addEventListener('click', e => { if (!moved) setZoom(!zoomed, e); });
 
-/* drag-to-pan when zoomed */
 let drag = null;
 lbScroll.addEventListener('mousedown', e => {
-  if (!lbScroll.classList.contains('zoom')) return;
+  if (!zoomed) return;
   drag = {x:e.clientX, y:e.clientY, l:lbScroll.scrollLeft, t:lbScroll.scrollTop}; moved = false;
   e.preventDefault();
 });
@@ -539,13 +694,10 @@ window.addEventListener('mouseup', () => { drag = null; setTimeout(() => moved =
 document.getElementById('lb-prev').onclick = () => goLb(li-1);
 document.getElementById('lb-next').onclick = () => goLb(li+1);
 document.getElementById('lb-close').onclick = () => hideModal(lb);
-lbScroll.addEventListener('click', e => {
-  if (e.target === lbScroll && !lbScroll.classList.contains('zoom')) hideModal(lb);
-});
+lbScroll.addEventListener('click', e => { if (e.target === lbScroll && !zoomed) hideModal(lb); });
 lbStage.addEventListener('click', e => { if (e.target === lbStage) hideModal(lb); });
-swipe(lbScroll, () => { if (!lbScroll.classList.contains('zoom')) goLb(li+1); }, () => { if (!lbScroll.classList.contains('zoom')) goLb(li-1); });
+swipe(lbScroll, () => { if (!zoomed) goLb(li+1); }, () => { if (!zoomed) goLb(li-1); });
 
-/* keyboard */
 document.addEventListener('keydown', e => {
   if (!active) return;
   if (e.key === 'Escape') { hideModal(active); return; }
@@ -555,7 +707,12 @@ document.addEventListener('keydown', e => {
   active === sl ? goSlide(si + dir) : goLb(li + dir);
 });
 
-/* copy */
+/* ---------- почта и копирование (адреса собираются в JS) ---------- */
+document.querySelectorAll('a[data-mail]').forEach(a => {
+  const m = mail(a.dataset.u, a.dataset.d);
+  a.href = 'mailto:' + m;
+  a.textContent = m;
+});
 const toast = document.getElementById('toast');
 let tt;
 function flash(msg){
@@ -563,7 +720,7 @@ function flash(msg){
   clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 1800);
 }
 document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', async () => {
-  const v = b.dataset.copy;
+  const v = b.dataset.copy || mail(b.dataset.u, b.dataset.d);
   try { await navigator.clipboard.writeText(v); }
   catch {
     const ta = document.createElement('textarea');
@@ -572,10 +729,37 @@ document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', asyn
     try { document.execCommand('copy'); } catch {}
     ta.remove();
   }
-  flash('Скопировано!');
+  flash(t('copied'));
 }));
 
-/* reveal on scroll */
+/* ---------- применение языка ---------- */
+function applyLang(l){
+  lang = l;
+  try { localStorage.setItem('lang', l); } catch {}
+  document.documentElement.lang = l;
+  document.title = t('title');
+  document.querySelector('meta[name="description"]').content = t('desc');
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.alt = t(el.dataset.i18nAlt); });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.i18nAria)); });
+  document.querySelectorAll('#lang button').forEach(b => {
+    const on = b.dataset.l === l;
+    b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+  });
+  updateCases(); updateFilters(); updateWorkTexts();
+  if (sl.classList.contains('open')) slTexts();
+  if (lb.classList.contains('open')) lbTexts();
+}
+document.getElementById('lang').addEventListener('click', e => {
+  const b = e.target.closest('button[data-l]');
+  if (b) applyLang(b.dataset.l);
+});
+
+renderWorks();
+applyLang(lang);
+
+/* ---------- появление при прокрутке ---------- */
 const rv = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window){
   const io = new IntersectionObserver(es => es.forEach(e => {
